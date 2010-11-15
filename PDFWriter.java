@@ -57,7 +57,11 @@ public class PDFWriter {
 	}
 	
 	public void setPageFont(String subType, String baseFont) {
-		mPageFont.setDictionaryContent("  /Type /Font\n  /Subtype /"+subType+"\n  /BaseFont /"+baseFont+"\n");        
+		mPageFont.setDictionaryContent("  /Type /Font\n  /Subtype /"+subType+"\n  /BaseFont /"+baseFont+"\n");
+	}
+
+	public void setPageFont(String subType, String baseFont, String encoding) {
+		mPageFont.setDictionaryContent("  /Type /Font\n  /Subtype /"+subType+"\n  /BaseFont /"+baseFont+"\n  /Encoding /"+encoding+"\n");
 	}
 	
 	private void addContent(String content) {

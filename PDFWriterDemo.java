@@ -19,11 +19,15 @@ public class PDFWriterDemo extends Activity {
 		PDFWriter mPDFWriter = new PDFWriter();
 		mPDFWriter.setPageHeight(400);
 		mPDFWriter.setPageWidth(320);
-        mPDFWriter.setPageFont(crl.android.pdfwriter.StandardFonts.SUBTYPE, crl.android.pdfwriter.StandardFonts.TIMES_ROMAN);
+        mPDFWriter.setPageFont(
+        	crl.android.pdfwriter.StandardFonts.SUBTYPE,
+        	crl.android.pdfwriter.StandardFonts.TIMES_ROMAN,
+        	crl.android.pdfwriter.StandardFonts.WIN_ANSI_ENCODING
+        );
         mPDFWriter.addRawContent("1 0 0 rg\n");
-        mPDFWriter.addText(70, 50, 12, "world");
+        mPDFWriter.addText(70, 50, 12, "hello world");
         mPDFWriter.addRawContent("0 0 0 rg\n");
-        mPDFWriter.addText(30, 90, 10, "hello");
+        mPDFWriter.addText(30, 90, 10, "© CRL");
         mPDFWriter.addLine(150, 150, 150, 200);
         String s = mPDFWriter.asString();
         return s;

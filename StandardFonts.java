@@ -19,4 +19,6 @@ public class StandardFonts {
 	public static String SYMBOL = "Symbol";
 	public static String ZAPDINGBATS = "ZapfDingbats";
 	
+	public static String MAC_ROMAN_ENCODING = "MacRomanEncoding";
+	public static String WIN_ANSI_ENCODING = "WinAnsiEncoding";
 }
