@@ -76,9 +76,13 @@ public class PDFWriter {
 	}
 
 	public void addText(int leftPosition, int topPositionFromBottom, int fontSize, String text) {
+		addText(leftPosition, topPositionFromBottom, fontSize, text, crl.android.pdfwriter.StandardFonts.DEGREES_0_ROTATION);
+	}
+	
+	public void addText(int leftPosition, int topPositionFromBottom, int fontSize, String text, String transformation) {
 		addContent(
 			"BT\n"+
-			Integer.toString(leftPosition)+" "+Integer.toString(topPositionFromBottom)+" TD\n"+
+			transformation+" "+Integer.toString(leftPosition)+" "+Integer.toString(topPositionFromBottom)+" Tm\n" +
 			"/F1 "+Integer.toString(fontSize)+" Tf\n"+
 			"("+text+") Tj\n"+
 			"ET\n"
