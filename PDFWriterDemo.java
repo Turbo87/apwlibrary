@@ -30,6 +30,11 @@ public class PDFWriterDemo extends Activity {
         mPDFWriter.addRawContent("0 0 0 rg\n");
         mPDFWriter.addText(30, 90, 10, "© CRL", crl.android.pdfwriter.StandardFonts.DEGREES_270_ROTATION);
         mPDFWriter.addLine(150, 150, 150, 200);
+        mPDFWriter.addRawContent("[] 0 d\n");
+        mPDFWriter.addRawContent("1 w\n");
+        mPDFWriter.addRawContent("0 0 1 RG\n");
+        mPDFWriter.addRawContent("0 1 0 rg\n");
+        mPDFWriter.addRectangle(40, 50, 20, 50);
         String s = mPDFWriter.asString();
         return s;
 	}

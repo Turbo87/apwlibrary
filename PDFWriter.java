@@ -72,7 +72,7 @@ public class PDFWriter {
 	}
 	
 	public void addRawContent(String rawContent) {
-		addContent(rawContent);		
+		addContent(rawContent);
 	}
 
 	public void addText(int leftPosition, int topPositionFromBottom, int fontSize, String text) {
@@ -93,6 +93,13 @@ public class PDFWriter {
 		addContent(
 			Integer.toString(fromLeft)+" "+Integer.toString(fromBottom)+" m\n"+
 			Integer.toString(toLeft)+" "+Integer.toString(toBottom)+" l\nS\n"
+		);
+	}
+	
+	public void addRectangle(int fromLeft, int fromBottom, int toLeft, int toBottom) {
+		addContent(
+			Integer.toString(fromLeft)+" "+Integer.toString(fromBottom)+" "+
+			Integer.toString(toLeft)+" "+Integer.toString(toBottom)+" re\nS\n"
 		);
 	}
 	
