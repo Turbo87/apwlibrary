@@ -17,9 +17,7 @@ public class PDFWriterDemo extends Activity {
 	TextView mText;
 	
 	private String generateHelloWorldPDF() {
-		PDFWriter mPDFWriter = new PDFWriter();
-		mPDFWriter.setPageHeight(400);
-		mPDFWriter.setPageWidth(320);
+		PDFWriter mPDFWriter = new PDFWriter(400, 320);
         mPDFWriter.setPageFont(
         	crl.android.pdfwriter.StandardFonts.SUBTYPE,
         	crl.android.pdfwriter.StandardFonts.TIMES_ROMAN,
@@ -29,12 +27,20 @@ public class PDFWriterDemo extends Activity {
         mPDFWriter.addText(70, 50, 12, "hello world");
         mPDFWriter.addRawContent("0 0 0 rg\n");
         mPDFWriter.addText(30, 90, 10, "© CRL", crl.android.pdfwriter.StandardFonts.DEGREES_270_ROTATION);
-        mPDFWriter.addLine(150, 150, 150, 200);
         mPDFWriter.addRawContent("[] 0 d\n");
         mPDFWriter.addRawContent("1 w\n");
         mPDFWriter.addRawContent("0 0 1 RG\n");
         mPDFWriter.addRawContent("0 1 0 rg\n");
-        mPDFWriter.addRectangle(40, 50, 20, 50);
+        mPDFWriter.newPage();
+        mPDFWriter.addRectangle(40, 50, 280, 50);
+        mPDFWriter.addText(85, 75, 18, "Code Research Laboratories");
+        mPDFWriter.newPage();
+        mPDFWriter.setPageFont(
+            	crl.android.pdfwriter.StandardFonts.SUBTYPE,
+            	crl.android.pdfwriter.StandardFonts.COURIER_BOLD
+        );
+        mPDFWriter.addText(150, 150, 14, "http://coderesearchlabs.com");
+        mPDFWriter.addLine(150, 140, 270, 140);
         String s = mPDFWriter.asString();
         return s;
 	}

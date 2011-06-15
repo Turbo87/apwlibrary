@@ -85,7 +85,7 @@ public class IndirectObject extends Base {
 		return mStreamContent.getContent();
 	}
 	
-	private String render() {
+	protected String render() {
 		StringBuilder sb = new StringBuilder();
 		sb.append(mID.toPDFString());
 		sb.append(" ");

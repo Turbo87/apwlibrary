@@ -1,0 +1,160 @@
+%PDF-1.4
+
+1 0 obj
+<<
+  /Type /Catalog
+  /Pages 2 0 R
+>>
+endobj
+
+2 0 obj
+<<
+  /Type /Pages
+  /MediaBox [ 0 0 400 320 ]
+  /Count 3
+  /Kids [ 3 0 R 6 0 R 9 0 R ]
+>>
+endobj
+
+4 0 obj
+<<
+  /Type /Font
+  /Subtype /Type1
+  /BaseFont /Times-Roman
+  /Encoding /WinAnsiEncoding
+>>
+endobj
+
+5 0 obj
+<<
+  /Length 142
+>>
+stream
+1 0 0 rg
+BT
+1 0 0 1 70 50 Tm
+/F1 12 Tf
+(hello world) Tj
+ET
+0 0 0 rg
+BT
+0 1 -1 0 30 90 Tm
+/F1 10 Tf
+(© CRL) Tj
+ET
+[] 0 d
+1 w
+0 0 1 RG
+0 1 0 rg
+endstream
+endobj
+
+3 0 obj
+<<
+  /Type /Page
+  /Parent 2 0 R
+  /Resources <<
+    /Font <<
+      /F1 4 0 R
+    >>
+  >>
+  /Contents 5 0 R
+>>
+endobj
+
+7 0 obj
+<<
+  /Type /Font
+  /Subtype /Type1
+  /BaseFont /Times-Roman
+  /Encoding /WinAnsiEncoding
+>>
+endobj
+
+8 0 obj
+<<
+  /Length 83
+>>
+stream
+40 50 280 50 re
+S
+BT
+1 0 0 1 85 75 Tm
+/F1 18 Tf
+(Code Research Laboratories) Tj
+ET
+endstream
+endobj
+
+6 0 obj
+<<
+  /Type /Page
+  /Parent 2 0 R
+  /Resources <<
+    /Font <<
+      /F1 7 0 R
+    >>
+  >>
+  /Contents 8 0 R
+>>
+endobj
+
+10 0 obj
+<<
+  /Type /Font
+  /Subtype /Type1
+  /BaseFont /Courier-Bold
+>>
+endobj
+
+11 0 obj
+<<
+  /Length 90
+>>
+stream
+BT
+1 0 0 1 150 150 Tm
+/F1 14 Tf
+(http://coderesearchlabs.com) Tj
+ET
+150 140 m
+270 140 l
+S
+endstream
+endobj
+
+9 0 obj
+<<
+  /Type /Page
+  /Parent 2 0 R
+  /Resources <<
+    /Font <<
+      /F1 10 0 R
+    >>
+  >>
+  /Contents 11 0 R
+>>
+endobj
+
+xref
+0 12
+0000000000 65536 f
+0000000010 00000 n
+0000000064 00000 n
+0000000170 00000 n
+0000000278 00000 n
+0000000473 00000 n
+0000000600 00000 n
+0000000708 00000 n
+0000000843 00000 n
+0000000970 00000 n
+0000001051 00000 n
+0000001194 00000 n
+trailer
+<<
+  /Size 11
+  /Root 1 0 R
+>>
+startxref
+1323
+%%EOF
