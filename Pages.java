@@ -1,3 +1,10 @@
+//
+//  Android PDF Writer
+//  http://coderesearchlabs.com/androidpdfwriter
+//
+//  by Javier Santo Domingo (j-a-s-d@coderesearchlabs.com)
+//
+
 package crl.android.pdfwriter;
 
 import java.util.ArrayList;
@@ -15,7 +22,7 @@ public class Pages {
 		mIndirectObject = mDocument.newIndirectObject();
 		mPageList = new ArrayList<Page>();
 		mMediaBox = new Array();
-		String content[] = {"0", "0", Integer.toString(pageHeight), Integer.toString(pageWidth)};
+		String content[] = {"0", "0", Integer.toString(pageWidth), Integer.toString(pageHeight)};
 		mMediaBox.addItemsFromStringArray(content);
 		mKids = new Array();
 	}

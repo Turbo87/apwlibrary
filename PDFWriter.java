@@ -1,3 +1,10 @@
+//
+//  Android PDF Writer
+//  http://coderesearchlabs.com/androidpdfwriter
+//
+//  by Javier Santo Domingo (j-a-s-d@coderesearchlabs.com)
+//
+
 package crl.android.pdfwriter;
 
 public class PDFWriter {
@@ -8,14 +15,14 @@ public class PDFWriter {
 	private Page mCurrentPage;
 
 	public PDFWriter() {
-		newDocument(800, 600);
+		newDocument(PaperSize.A4_WIDTH, PaperSize.A4_HEIGHT);
 	}
 
-	public PDFWriter(int pageHeight, int pageWidth) {
-		newDocument(pageHeight, pageWidth);
+	public PDFWriter(int pageWidth, int pageHeight) {
+		newDocument(pageWidth, pageHeight);
 	}
-
-	private void newDocument(int pageHeight, int pageWidth) {
+	
+	private void newDocument(int pageWidth, int pageHeight) {
 		mDocument = new PDFDocument();
 		mCatalog = mDocument.newIndirectObject();
 		mDocument.includeIndirectObject(mCatalog);
@@ -34,13 +41,13 @@ public class PDFWriter {
 		mDocument.includeIndirectObject(mCurrentPage.getIndirectObject());
 		mPages.render();
 	}
-		
-	public void setPageFont(String subType, String baseFont) {
-		mCurrentPage.setPageFont(subType, baseFont);
+	
+	public void setFont(String subType, String baseFont) {
+		mCurrentPage.setFont(subType, baseFont);
 	}
 
-	public void setPageFont(String subType, String baseFont, String encoding) {
-		mCurrentPage.setPageFont(subType, baseFont, encoding);
+	public void setFont(String subType, String baseFont, String encoding) {
+		mCurrentPage.setFont(subType, baseFont, encoding);
 	}
 	
 	public void addRawContent(String rawContent) {
@@ -48,7 +55,7 @@ public class PDFWriter {
 	}
 
 	public void addText(int leftPosition, int topPositionFromBottom, int fontSize, String text) {
-		mCurrentPage.addText(leftPosition, topPositionFromBottom, fontSize, text, crl.android.pdfwriter.StandardFonts.DEGREES_0_ROTATION);
+		mCurrentPage.addText(leftPosition, topPositionFromBottom, fontSize, text, StandardFonts.DEGREES_0_ROTATION);
 	}
 	
 	public void addText(int leftPosition, int topPositionFromBottom, int fontSize, String text, String transformation) {
@@ -64,6 +71,7 @@ public class PDFWriter {
 	}
 	
 	public String asString() {
+		mPages.render();
 		return mDocument.toPDFString();
 	}
 	

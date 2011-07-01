@@ -1,3 +1,10 @@
+//
+//  Android PDF Writer
+//  http://coderesearchlabs.com/androidpdfwriter
+//
+//  by Javier Santo Domingo (j-a-s-d@coderesearchlabs.com)
+//
+
 package crl.android.pdfwriter;
 
 import java.io.File;
@@ -17,28 +24,22 @@ public class PDFWriterDemo extends Activity {
 	TextView mText;
 	
 	private String generateHelloWorldPDF() {
-		PDFWriter mPDFWriter = new PDFWriter(400, 320);
-        mPDFWriter.setPageFont(
-        	crl.android.pdfwriter.StandardFonts.SUBTYPE,
-        	crl.android.pdfwriter.StandardFonts.TIMES_ROMAN,
-        	crl.android.pdfwriter.StandardFonts.WIN_ANSI_ENCODING
-        );
+		PDFWriter mPDFWriter = new PDFWriter(PaperSize.FOLIO_WIDTH, PaperSize.FOLIO_HEIGHT);
+        mPDFWriter.setFont(StandardFonts.SUBTYPE, StandardFonts.TIMES_ROMAN);
         mPDFWriter.addRawContent("1 0 0 rg\n");
         mPDFWriter.addText(70, 50, 12, "hello world");
+        mPDFWriter.setFont(StandardFonts.SUBTYPE, StandardFonts.COURIER, StandardFonts.WIN_ANSI_ENCODING);
         mPDFWriter.addRawContent("0 0 0 rg\n");
-        mPDFWriter.addText(30, 90, 10, "© CRL", crl.android.pdfwriter.StandardFonts.DEGREES_270_ROTATION);
+        mPDFWriter.addText(30, 90, 10, "© CRL", StandardFonts.DEGREES_270_ROTATION);
+        mPDFWriter.newPage();
         mPDFWriter.addRawContent("[] 0 d\n");
         mPDFWriter.addRawContent("1 w\n");
         mPDFWriter.addRawContent("0 0 1 RG\n");
         mPDFWriter.addRawContent("0 1 0 rg\n");
-        mPDFWriter.newPage();
         mPDFWriter.addRectangle(40, 50, 280, 50);
         mPDFWriter.addText(85, 75, 18, "Code Research Laboratories");
         mPDFWriter.newPage();
-        mPDFWriter.setPageFont(
-            	crl.android.pdfwriter.StandardFonts.SUBTYPE,
-            	crl.android.pdfwriter.StandardFonts.COURIER_BOLD
-        );
+        mPDFWriter.setFont(StandardFonts.SUBTYPE, StandardFonts.COURIER_BOLD);
         mPDFWriter.addText(150, 150, 14, "http://coderesearchlabs.com");
         mPDFWriter.addLine(150, 140, 270, 140);
         String s = mPDFWriter.asString();
