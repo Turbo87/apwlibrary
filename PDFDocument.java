@@ -16,32 +16,32 @@ public class PDFDocument extends Base {
 	private Trailer mTrailer;
 	
 	public PDFDocument() {
-		mHeader = new Header();		
+		mHeader = new Header();
 		mBody = new Body();
 		mBody.setByteOffsetStart(mHeader.getPDFStringSize());
 		mBody.setObjectNumberStart(0);
 		mCRT = new CrossReferenceTable();
 		mTrailer = new Trailer();
 	}
-
+	
 	public IndirectObject newIndirectObject() {
 		return mBody.getNewIndirectObject();
 	}
-
+	
 	public IndirectObject newRawObject(String content) {
 		IndirectObject iobj = mBody.getNewIndirectObject();
 		iobj.setContent(content);
 		return iobj;
 	}
-
+	
 	public IndirectObject newDictionaryObject(String dictionaryContent) {
 		IndirectObject iobj = mBody.getNewIndirectObject();
 		iobj.setDictionaryContent(dictionaryContent);
 		return iobj;
 	}
-
+	
 	public IndirectObject newStreamObject(String streamContent) {
-		IndirectObject iobj = mBody.getNewIndirectObject();		
+		IndirectObject iobj = mBody.getNewIndirectObject();
 		iobj.setDictionaryContent("  /Length "+Integer.toString(streamContent.length())+"\n");
 		iobj.setStreamContent(streamContent);
 		return iobj;
@@ -50,7 +50,7 @@ public class PDFDocument extends Base {
 	public void includeIndirectObject(IndirectObject iobj) {
 		mBody.includeIndirectObject(iobj);
 	}
-
+	
 	@Override
 	public String toPDFString() {
 		StringBuilder sb = new StringBuilder();
@@ -59,8 +59,9 @@ public class PDFDocument extends Base {
 		mCRT.setObjectNumberStart(mBody.getObjectNumberStart());
 		int x = 0;
 		while (x < mBody.getObjectsCount()) {
-			mCRT.addObjectXRefInfo(mBody.getObjectByteOffset(x), mBody.getObjectGeneration(x), mBody.isInUseObject(x));
-			x++;
+			IndirectObject iobj = mBody.getObjectByNumberID(++x);
+			if (iobj != null)
+				mCRT.addObjectXRefInfo(iobj.getByteOffset(), iobj.getGeneration(), iobj.getInUse());
 		}
 		mTrailer.setObjectsCount(mBody.getObjectsCount());
 		mTrailer.setCrossReferenceTableByteOffset(sb.length());

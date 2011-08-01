@@ -40,7 +40,7 @@ public class Body extends List {
 	public int getObjectsCount() {
 		return mObjectsList.size();
 	}
-
+	
 	private int getNextAvailableObjectNumber() {
 		return ++mGeneratedObjectsCount + mObjectNumberStart;
 	}
@@ -57,41 +57,42 @@ public class Body extends List {
 		return iobj;
 	}
 	
-	public void includeIndirectObject(IndirectObject iobj) {		
+	public IndirectObject getObjectByNumberID(int Number) {
+		IndirectObject iobj;
+		int x = 0;
+		while (x < mObjectsList.size()) {
+			iobj = mObjectsList.get(x);
+			if (iobj.getNumberID() == Number)
+				return iobj;
+			x++;
+		}
+		return null;
+	}
+	
+	public void includeIndirectObject(IndirectObject iobj) {
 		mObjectsList.add(iobj);
-	}
-
-	public int getObjectByteOffset(int x) {
-		return mObjectsList.get(x).getByteOffset();
-	}
-
-	public int getObjectGeneration(int x) {
-		return mObjectsList.get(x).getGeneration();
-	}
-
-	public boolean isInUseObject(int x) {
-		return mObjectsList.get(x).getInUse();
 	}
 	
 	private String render() {
 		int x = 0;
 		int offset = mByteOffsetStart;
 		while (x < mObjectsList.size()) {
-			IndirectObject iobj = mObjectsList.get(x);
-			String s = iobj.toPDFString()+"\n";
+			IndirectObject iobj = getObjectByNumberID(++x);
+			String s = "";
+			if (iobj != null)
+				s = iobj.toPDFString() + "\n";
 			mList.add(s);
 			iobj.setByteOffset(offset);
 			offset += s.length();
-			x++;
 		}
 		return renderList();
 	}
 	
 	@Override
-	public String toPDFString() {		
+	public String toPDFString() {
 		return render();
 	}
-
+	
 	@Override
 	public void clear() {
 		super.clear();
