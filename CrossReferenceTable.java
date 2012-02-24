@@ -38,18 +38,18 @@ public class CrossReferenceTable extends List {
 		} else {
 			sb.append(" f");
 		}
-		sb.append("\n");
+		sb.append("\r\n");
 		mList.add(sb.toString());
 	}
 
 	private String render() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("xref");
-		sb.append("\n");
+		sb.append("\r\n");
 		sb.append(mObjectNumberStart);
 		sb.append(" ");
 		sb.append(mList.size());
-		sb.append("\n");
+		sb.append("\r\n");
 		sb.append(getObjectsXRefInfo());
 		return sb.toString(); 
 	}	

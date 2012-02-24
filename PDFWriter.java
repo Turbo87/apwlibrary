@@ -7,6 +7,8 @@
 
 package crl.android.pdfwriter;
 
+import android.graphics.Bitmap;
+
 public class PDFWriter {
 
 	private PDFDocument mDocument;
@@ -33,7 +35,7 @@ public class PDFWriter {
 	}
 	
 	private void renderCatalog() {
-		mCatalog.setDictionaryContent("  /Type /Catalog\n  /Pages "+mPages.getIndirectObject().getIndirectReference()+"\n");
+		mCatalog.setDictionaryContent("  /Type /Catalog\n  /Pages " + mPages.getIndirectObject().getIndirectReference() + "\n");
 	}
 	
 	public void newPage() {
@@ -55,7 +57,7 @@ public class PDFWriter {
 	}
 
 	public void addText(int leftPosition, int topPositionFromBottom, int fontSize, String text) {
-		mCurrentPage.addText(leftPosition, topPositionFromBottom, fontSize, text, StandardFonts.DEGREES_0_ROTATION);
+		addText(leftPosition, topPositionFromBottom, fontSize, text, Transformation.DEGREES_0_ROTATION);
 	}
 	
 	public void addText(int leftPosition, int topPositionFromBottom, int fontSize, String text, String transformation) {
@@ -69,10 +71,45 @@ public class PDFWriter {
 	public void addRectangle(int fromLeft, int fromBottom, int toLeft, int toBottom) {
 		mCurrentPage.addRectangle(fromLeft, fromBottom, toLeft, toBottom);
 	}
+
+	public void addImage(int fromLeft, int fromBottom, Bitmap bitmap) {
+		addImage(fromLeft, fromBottom, bitmap, Transformation.DEGREES_0_ROTATION);
+	}
+
+	public void addImage(int fromLeft, int fromBottom, Bitmap bitmap, String transformation) {
+		final XObjectImage xImage = new XObjectImage(mDocument, bitmap);
+		mCurrentPage.addImage(fromLeft, fromBottom, xImage.getWidth(), xImage.getHeight(), xImage, transformation);
+	}
+	
+	public void addImage(int fromLeft, int fromBottom, int toLeft, int toBottom, Bitmap bitmap) {
+		addImage(fromLeft, fromBottom, toLeft, toBottom, bitmap, Transformation.DEGREES_0_ROTATION);
+	}
+	
+	public void addImage(int fromLeft, int fromBottom, int toLeft, int toBottom, Bitmap bitmap, String transformation) {
+		mCurrentPage.addImage(fromLeft, fromBottom, toLeft, toBottom, new XObjectImage(mDocument, bitmap), transformation);
+	}
+	
+	public void addImageKeepRatio(int fromLeft, int fromBottom, int width, int height, Bitmap bitmap) {
+		addImageKeepRatio(fromLeft, fromBottom, width, height, bitmap, Transformation.DEGREES_0_ROTATION);
+	}
+	
+	public void addImageKeepRatio(int fromLeft, int fromBottom, int width, int height, Bitmap bitmap, String transformation) {
+		final XObjectImage xImage = new XObjectImage(mDocument, bitmap);
+		final float imgRatio = (float) xImage.getWidth() / (float) xImage.getHeight();
+		final float boxRatio = (float) width / (float) height;
+		float ratio;
+		if (imgRatio < boxRatio) {
+			ratio = (float) width / (float) xImage.getWidth();
+		} else { 
+			ratio = (float) height / (float) xImage.getHeight();
+		}
+		width = (int) (xImage.getWidth() * ratio);
+		height = (int) (xImage.getHeight() * ratio);
+		mCurrentPage.addImage(fromLeft, fromBottom, width, height, xImage, transformation);
+	}
 	
 	public String asString() {
 		mPages.render();
 		return mDocument.toPDFString();
 	}
-	
 }

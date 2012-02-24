@@ -40,7 +40,6 @@ public class IndirectIdentifier extends Base {
 
 	@Override
 	public String toPDFString() {
-		return Integer.toString(mNumber)+" "+Integer.toString(mGeneration);
+		return Integer.toString(mNumber) + " " + Integer.toString(mGeneration);
 	}
-
 }

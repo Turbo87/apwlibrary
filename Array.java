@@ -11,8 +11,8 @@ public class Array extends EnclosedContent {
 	
 	public Array() {
 		super();
-		setBeginKeyword("[ ",false,false);
-		setEndKeyword("]",false,false);
+		setBeginKeyword("[ ", false, false);
+		setEndKeyword("]", false, false);
 	}
 
 	public void addItem(String s) {
@@ -21,8 +21,8 @@ public class Array extends EnclosedContent {
 	}
 	
 	public void addItemsFromStringArray(String[] content) {
-		for (String s: content)
+		for (String s: content) {
 			addItem(s);
+		}
 	}
-	
 }

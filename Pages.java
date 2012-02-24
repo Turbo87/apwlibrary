@@ -40,9 +40,13 @@ public class Pages {
 	
 	public void render() {
 		mIndirectObject.setDictionaryContent(
-				"  /Type /Pages\n  /MediaBox "+mMediaBox.toPDFString()+"\n  /Count "+Integer.toString(mPageList.size()) +"\n  /Kids "+mKids.toPDFString()+"\n"
+				"  /Type /Pages\n" +
+				"  /MediaBox " + mMediaBox.toPDFString() + "\n" +
+				"  /Count " + Integer.toString(mPageList.size()) + "\n" +
+				"  /Kids " + mKids.toPDFString() + "\n"
 		);
-		for (Page lPage: mPageList)
+		for (Page lPage: mPageList) {
 			lPage.render(mIndirectObject.getIndirectReference());
+		}
 	}
 }

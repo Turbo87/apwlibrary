@@ -9,7 +9,6 @@ package crl.android.pdfwriter;
 
 public class PDFDocument extends Base {
 
-	// the four main sections described in the PDF Reference
 	private Header mHeader;
 	private Body mBody;
 	private CrossReferenceTable mCRT;
@@ -42,7 +41,7 @@ public class PDFDocument extends Base {
 	
 	public IndirectObject newStreamObject(String streamContent) {
 		IndirectObject iobj = mBody.getNewIndirectObject();
-		iobj.setDictionaryContent("  /Length "+Integer.toString(streamContent.length())+"\n");
+		iobj.setDictionaryContent("  /Length " + Integer.toString(streamContent.length()) + "\n");
 		iobj.setStreamContent(streamContent);
 		return iobj;
 	}
@@ -60,11 +59,13 @@ public class PDFDocument extends Base {
 		int x = 0;
 		while (x < mBody.getObjectsCount()) {
 			IndirectObject iobj = mBody.getObjectByNumberID(++x);
-			if (iobj != null)
+			if (iobj != null) {
 				mCRT.addObjectXRefInfo(iobj.getByteOffset(), iobj.getGeneration(), iobj.getInUse());
+			}
 		}
 		mTrailer.setObjectsCount(mBody.getObjectsCount());
 		mTrailer.setCrossReferenceTableByteOffset(sb.length());
+		mTrailer.setId(Indentifiers.generateId());
 		return sb.toString() + mCRT.toPDFString() + mTrailer.toPDFString();
 	}
 	
@@ -75,5 +76,4 @@ public class PDFDocument extends Base {
 		mCRT.clear();
 		mTrailer.clear();
 	}
-
 }

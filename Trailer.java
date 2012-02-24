@@ -11,26 +11,31 @@ public class Trailer extends Base {
 
 	private int mXRefByteOffset;
 	private int mObjectsCount;
+	private String mId;
 	private Dictionary mTrailerDictionary;
 	
 	public Trailer() {
 		clear();
 	}
 	
-	public void setCrossReferenceTableByteOffset(int Value)
-	{
+	public void setId(String Value) {
+		mId = Value;
+	}
+	
+	public void setCrossReferenceTableByteOffset(int Value) {
 		mXRefByteOffset = Value;
 	}
 
-	public void setObjectsCount(int Value)
-	{
+	public void setObjectsCount(int Value) {
 		mObjectsCount = Value;
 	}
 	
 	private void renderDictionary() {
-		mTrailerDictionary.setContent("  /Size "+Integer.toString(mObjectsCount));
+		mTrailerDictionary.setContent("  /Size " + Integer.toString(mObjectsCount));
 		mTrailerDictionary.addNewLine();
 		mTrailerDictionary.addContent("  /Root 1 0 R");
+		mTrailerDictionary.addNewLine();
+		mTrailerDictionary.addContent("  /ID [<" + mId + "> <" + mId + ">]");
 		mTrailerDictionary.addNewLine();
 	}
 
@@ -45,7 +50,7 @@ public class Trailer extends Base {
 		sb.append(mXRefByteOffset);
 		sb.append("\n");
 		sb.append("%%EOF");
-		sb.append("\n");		
+		sb.append("\n");
 		return sb.toString();
 	}
 	
@@ -59,5 +64,4 @@ public class Trailer extends Base {
 		mXRefByteOffset = 0;
 		mTrailerDictionary = new Dictionary();
 	}
-
 }

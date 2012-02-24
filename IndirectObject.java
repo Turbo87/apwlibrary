@@ -37,7 +37,7 @@ public class IndirectObject extends Base {
 	}
 	
 	public String getIndirectReference() {
-		return mID.toPDFString()+" R";
+		return mID.toPDFString() + " R";
 	}
 
 	public void setByteOffset(int Value) {
