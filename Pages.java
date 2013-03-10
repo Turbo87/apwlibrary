@@ -38,6 +38,14 @@ public class Pages {
 		return lPage;
 	}
 	
+	public Page getPageAt(int position) {
+		return mPageList.get(position);
+	}
+	
+	public int getCount() {
+		return mPageList.size();
+	}
+	
 	public void render() {
 		mIndirectObject.setDictionaryContent(
 				"  /Type /Pages\n" +

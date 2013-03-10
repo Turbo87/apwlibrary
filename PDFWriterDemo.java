@@ -70,6 +70,12 @@ public class PDFWriterDemo extends Activity {
         mPDFWriter.addText(150, 150, 14, "http://coderesearchlabs.com");
         mPDFWriter.addLine(150, 140, 270, 140);
         
+        int pageCount = mPDFWriter.getPageCount();
+        for (int i = 0; i < pageCount; i++) {
+        	mPDFWriter.setCurrentPage(i);
+        	mPDFWriter.addText(10, 10, 8, Integer.toString(i + 1) + " / " + Integer.toString(pageCount));
+        }
+        
         String s = mPDFWriter.asString();
         return s;
 	}

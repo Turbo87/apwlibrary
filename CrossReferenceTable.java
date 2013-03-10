@@ -34,9 +34,9 @@ public class CrossReferenceTable extends List {
 		sb.append(" ");
 		sb.append(String.format("%05d", Generation));
 		if (InUse) {
-			sb.append(" n");
+			sb.append(" n ");
 		} else {
-			sb.append(" f");
+			sb.append(" f ");
 		}
 		sb.append("\r\n");
 		mList.add(sb.toString());

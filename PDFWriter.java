@@ -44,6 +44,14 @@ public class PDFWriter {
 		mPages.render();
 	}
 	
+	public void setCurrentPage(int pageNumber) {
+		mCurrentPage = mPages.getPageAt(pageNumber);
+	}
+	
+	public int getPageCount() {
+		return mPages.getCount();
+	}
+	
 	public void setFont(String subType, String baseFont) {
 		mCurrentPage.setFont(subType, baseFont);
 	}
