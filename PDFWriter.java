@@ -71,6 +71,14 @@ public class PDFWriter {
 	public void addText(int leftPosition, int topPositionFromBottom, int fontSize, String text, String transformation) {
 		mCurrentPage.addText(leftPosition, topPositionFromBottom, fontSize, text, transformation);
 	}
+
+	public void addTextAsHex(int leftPosition, int topPositionFromBottom, int fontSize, String hex) {
+		addTextAsHex(leftPosition, topPositionFromBottom, fontSize, hex, Transformation.DEGREES_0_ROTATION);
+	}
+	
+	public void addTextAsHex(int leftPosition, int topPositionFromBottom, int fontSize, String hex, String transformation) {
+		mCurrentPage.addTextAsHex(leftPosition, topPositionFromBottom, fontSize, hex, transformation);
+	}
 	
 	public void addLine(int fromLeft, int fromBottom, int toLeft, int toBottom) {
 		mCurrentPage.addLine(fromLeft, fromBottom, toLeft, toBottom);

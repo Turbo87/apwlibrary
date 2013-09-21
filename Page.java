@@ -102,6 +102,20 @@ public class Page {
 			"ET\n"
 		);
 	}
+
+	public void addTextAsHex(int leftPosition, int topPositionFromBottom, int fontSize, String hex) {
+		addTextAsHex(leftPosition, topPositionFromBottom, fontSize, hex, Transformation.DEGREES_0_ROTATION);
+	}
+	
+	public void addTextAsHex(int leftPosition, int topPositionFromBottom, int fontSize, String hex, String transformation) {
+		addContent(
+			"BT\n" +
+			transformation + " " + Integer.toString(leftPosition) + " " + Integer.toString(topPositionFromBottom) + " Tm\n" +
+			"/F" + Integer.toString(mPageFonts.size()) + " " + Integer.toString(fontSize) + " Tf\n" +
+			"<" + hex + "> Tj\n" +
+			"ET\n"
+		);
+	}
 	
 	public void addLine(int fromLeft, int fromBottom, int toLeft, int toBottom) {
 		addContent(

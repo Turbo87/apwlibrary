@@ -52,7 +52,7 @@ public class PDFWriterDemo extends Activity {
 		
         mPDFWriter.setFont(StandardFonts.SUBTYPE, StandardFonts.TIMES_ROMAN);
         mPDFWriter.addRawContent("1 0 0 rg\n");
-        mPDFWriter.addText(70, 50, 12, "hello world");
+        mPDFWriter.addTextAsHex(70, 50, 12, "68656c6c6f20776f726c6420286173206865782921");
         mPDFWriter.setFont(StandardFonts.SUBTYPE, StandardFonts.COURIER, StandardFonts.WIN_ANSI_ENCODING);
         mPDFWriter.addRawContent("0 0 0 rg\n");
         mPDFWriter.addText(30, 90, 10, "© CRL", Transformation.DEGREES_270_ROTATION);
