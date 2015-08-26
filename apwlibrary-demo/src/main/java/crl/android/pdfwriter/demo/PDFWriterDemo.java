@@ -5,14 +5,12 @@
 //  by Javier Santo Domingo (j-a-s-d@coderesearchlabs.com)
 //
 
-package crl.android.pdfwriter;
+package crl.android.pdfwriter.demo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-
-import crl.android.pdfwriter.R;
 
 import android.app.Activity;
 import android.content.res.AssetManager;
@@ -22,6 +20,11 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.widget.TextView;
 
+import crl.android.pdfwriter.PDFWriter;
+import crl.android.pdfwriter.PaperSize;
+import crl.android.pdfwriter.StandardFonts;
+import crl.android.pdfwriter.Transformation;
+
 public class PDFWriterDemo extends Activity {
 	
 	TextView mText;
@@ -29,9 +32,6 @@ public class PDFWriterDemo extends Activity {
 	private String generateHelloWorldPDF() {
 		PDFWriter mPDFWriter = new PDFWriter(PaperSize.FOLIO_WIDTH, PaperSize.FOLIO_HEIGHT);
 
-		// note that to make this images snippet work
-		// you have to uncompress the assets.zip file
-		// included into your project assets folder
         AssetManager mngr = getAssets();
 		try {
 			Bitmap xoiPNG = BitmapFactory.decodeStream(mngr.open("CRL-borders.png"));
@@ -55,7 +55,7 @@ public class PDFWriterDemo extends Activity {
         mPDFWriter.addTextAsHex(70, 50, 12, "68656c6c6f20776f726c6420286173206865782921");
         mPDFWriter.setFont(StandardFonts.SUBTYPE, StandardFonts.COURIER, StandardFonts.WIN_ANSI_ENCODING);
         mPDFWriter.addRawContent("0 0 0 rg\n");
-        mPDFWriter.addText(30, 90, 10, "© CRL", Transformation.DEGREES_270_ROTATION);
+        mPDFWriter.addText(30, 90, 10, "ï¿½ CRL", Transformation.DEGREES_270_ROTATION);
         
         mPDFWriter.newPage();
         mPDFWriter.addRawContent("[] 0 d\n");
