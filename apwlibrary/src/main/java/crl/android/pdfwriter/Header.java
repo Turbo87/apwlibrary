@@ -26,7 +26,7 @@ public class Header extends Base {
 	}
 	
 	private void render() {
-		mRenderedHeader = "%PDF-" + mVersion + "\n%©»ªµ\n";
+		mRenderedHeader = "%PDF-" + mVersion + "\n%\u00a9\u00bb\u00aa\u00b5\n";
 	}
 	
 	@Override
