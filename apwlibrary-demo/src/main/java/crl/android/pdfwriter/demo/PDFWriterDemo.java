@@ -26,6 +26,8 @@ import crl.android.pdfwriter.PaperSize;
 import crl.android.pdfwriter.StandardFonts;
 import crl.android.pdfwriter.Transformation;
 
+import static android.os.Environment.DIRECTORY_DOWNLOADS;
+
 public class PDFWriterDemo extends Activity {
 	
 	TextView mText;
@@ -87,7 +89,11 @@ public class PDFWriterDemo extends Activity {
 	}
 	
 	private void outputToFile(String fileName, String pdfContent, String encoding) {
-        File newFile = new File(Environment.getExternalStorageDirectory() + "/" + fileName);
+        File downloads = Environment.getExternalStoragePublicDirectory(DIRECTORY_DOWNLOADS);
+        if (!downloads.exists() && !downloads.mkdirs())
+            throw new RuntimeException("Could not create download folder");
+
+        File newFile = new File(downloads, fileName);
         Log.i("PDF", "Writing file to " + newFile);
 
         try {

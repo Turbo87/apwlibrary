@@ -3,8 +3,7 @@
     package="crl.android.pdfwriter.demo"
     xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <uses-permission android:name="ANDROID.PERMISSION.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="ANDROID.PERMISSION.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application>
         <activity android:name=".PDFWriterDemo">
