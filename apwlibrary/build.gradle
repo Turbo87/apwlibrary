@@ -1,4 +1,9 @@
+group = 'crl.android.pdfwriter'
+version = '1.0.0'
+
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
 
 android {
     compileSdkVersion 22
@@ -11,4 +16,74 @@ android {
 
         minSdkVersion 15
     }
+}
+
+def siteUrl = 'https://github.com/Turbo87/apwlibrary'
+def gitUrl = 'https://github.com/Turbo87/apwlibrary.git'
+
+bintray {
+    user = bintray_user
+    key = bintray_api_key
+
+    configurations = ['archives'] //When uploading configuration files
+    pkg {
+        repo = 'maven'
+        name = project.name
+        desc = 'Android PDF Writer'
+        websiteUrl = siteUrl
+        issueTrackerUrl = 'https://github.com/Turbo87/apwlibrary/issues'
+        vcsUrl = gitUrl
+        licenses = ['BSD 3-Clause']
+        publicDownloadNumbers = true
+    }
+}
+
+install {
+    repositories.mavenInstaller {
+        pom {
+            project {
+                packaging 'aar'
+                name 'Android PDF Writer'
+                url siteUrl
+                licenses {
+                    license {
+                        name 'BSD 3-Clause'
+                        url 'http://opensource.org/licenses/BSD-3-Clause'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'Turbo87'
+                        name 'Tobias Bieniek'
+                        email 'tobias.bieniek@gmx.de'
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+                }
+            }
+        }
+    }
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
 }

@@ -1,2 +1,5 @@
 include ':apwlibrary'
 include ':apwlibrary-demo'
+
+rootProject.name = 'apwlibrary-root'
+
