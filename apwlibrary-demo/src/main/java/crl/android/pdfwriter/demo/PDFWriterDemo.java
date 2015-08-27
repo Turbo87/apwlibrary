@@ -18,6 +18,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.widget.TextView;
 
 import crl.android.pdfwriter.PDFWriter;
@@ -87,6 +88,8 @@ public class PDFWriterDemo extends Activity {
 	
 	private void outputToFile(String fileName, String pdfContent, String encoding) {
         File newFile = new File(Environment.getExternalStorageDirectory() + "/" + fileName);
+        Log.i("PDF", "Writing file to " + newFile);
+
         try {
             newFile.createNewFile();
             try {
@@ -94,10 +97,10 @@ public class PDFWriterDemo extends Activity {
             	pdfFile.write(pdfContent.getBytes(encoding));
                 pdfFile.close();
             } catch(FileNotFoundException e) {
-            	//
+            	Log.w("PDF", e);
             }
         } catch(IOException e) {
-        	//
+            Log.w("PDF", e);
         }
 	}
 	
