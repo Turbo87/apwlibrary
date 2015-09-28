@@ -16,6 +16,10 @@ android {
 
         minSdkVersion 1
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_6
+        targetCompatibility JavaVersion.VERSION_1_6
+    }
 }
 
 def siteUrl = 'https://github.com/Turbo87/apwlibrary'
