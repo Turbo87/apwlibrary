@@ -9,37 +9,37 @@ package crl.android.pdfwriter;
 
 public class IndirectIdentifier extends Base {
 
-	private int mNumber;
-	private int mGeneration;
+    private int mNumber;
+    private int mGeneration;
 
-	public IndirectIdentifier() {
-		clear();
-	}
-	
-	public void setNumber(int Number) {
-		this.mNumber = Number;
-	}
+    public IndirectIdentifier() {
+        clear();
+    }
 
-	public int getNumber() {
-		return mNumber;
-	}
+    public void setNumber(int Number) {
+        this.mNumber = Number;
+    }
 
-	public void setGeneration(int Generation) {
-		this.mGeneration = Generation;
-	}
+    public int getNumber() {
+        return mNumber;
+    }
 
-	public int getGeneration() {
-		return mGeneration;
-	}
-	
-	@Override
-	public void clear() {
-		mNumber = 0;
-		mGeneration = 0;
-	}
+    public void setGeneration(int Generation) {
+        this.mGeneration = Generation;
+    }
 
-	@Override
-	public String toPDFString() {
-		return Integer.toString(mNumber) + " " + Integer.toString(mGeneration);
-	}
+    public int getGeneration() {
+        return mGeneration;
+    }
+
+    @Override
+    public void clear() {
+        mNumber = 0;
+        mGeneration = 0;
+    }
+
+    @Override
+    public String toPDFString() {
+        return Integer.toString(mNumber) + " " + Integer.toString(mGeneration);
+    }
 }
