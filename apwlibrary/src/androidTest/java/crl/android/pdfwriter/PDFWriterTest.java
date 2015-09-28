@@ -15,7 +15,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertNotNull;
