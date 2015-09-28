@@ -77,8 +77,9 @@ public class PDFDocument extends Base {
     }
 
     public void writeTo(OutputStream stream) throws IOException {
+        int offset = mHeader.writeTo(stream);
+
         StringBuilder sb = new StringBuilder();
-        sb.append(mHeader.toPDFString());
         sb.append(mBody.toPDFString());
         mCRT.setObjectNumberStart(mBody.getObjectNumberStart());
         int x = 0;
@@ -89,7 +90,7 @@ public class PDFDocument extends Base {
             }
         }
         mTrailer.setObjectsCount(mBody.getObjectsCount());
-        mTrailer.setCrossReferenceTableByteOffset(sb.length());
+        mTrailer.setCrossReferenceTableByteOffset(offset + sb.length());
         String s = sb.toString() + mCRT.toPDFString() + mTrailer.toPDFString();
         stream.write(s.getBytes(StandardCharsets.US_ASCII));
     }
