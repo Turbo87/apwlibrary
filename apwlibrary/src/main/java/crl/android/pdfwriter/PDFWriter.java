@@ -137,6 +137,7 @@ public class PDFWriter {
     }
 
     public void writeTo(OutputStream stream) throws IOException {
-        stream.write(asString().getBytes(StandardCharsets.US_ASCII));
+        mPages.render();
+        mDocument.writeTo(stream);
     }
 }

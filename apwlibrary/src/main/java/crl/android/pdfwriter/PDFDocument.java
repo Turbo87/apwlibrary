@@ -7,6 +7,9 @@
 
 package crl.android.pdfwriter;
 
+import java.io.IOException;
+import java.io.OutputStream;
+
 public class PDFDocument extends Base {
 
     private Header mHeader;
@@ -71,6 +74,24 @@ public class PDFDocument extends Base {
         mTrailer.setObjectsCount(mBody.getObjectsCount());
         mTrailer.setCrossReferenceTableByteOffset(sb.length());
         return sb.toString() + mCRT.toPDFString() + mTrailer.toPDFString();
+    }
+
+    public void writeTo(OutputStream stream) throws IOException {
+        StringBuilder sb = new StringBuilder();
+        sb.append(mHeader.toPDFString());
+        sb.append(mBody.toPDFString());
+        mCRT.setObjectNumberStart(mBody.getObjectNumberStart());
+        int x = 0;
+        while (x < mBody.getObjectsCount()) {
+            IndirectObject iobj = mBody.getObjectByNumberID(++x);
+            if (iobj != null) {
+                mCRT.addObjectXRefInfo(iobj.getByteOffset(), iobj.getGeneration(), iobj.getInUse());
+            }
+        }
+        mTrailer.setObjectsCount(mBody.getObjectsCount());
+        mTrailer.setCrossReferenceTableByteOffset(sb.length());
+        String s = sb.toString() + mCRT.toPDFString() + mTrailer.toPDFString();
+        stream.write(s.getBytes(StandardCharsets.US_ASCII));
     }
 
     @Override
