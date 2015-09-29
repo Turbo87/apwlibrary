@@ -58,14 +58,10 @@ public class Body extends List {
     }
 
     public IndirectObject getObjectByNumberID(int Number) {
-        IndirectObject iobj;
-        int x = 0;
-        while (x < mObjectsList.size()) {
-            iobj = mObjectsList.get(x);
+        for (IndirectObject iobj : mObjectsList)
             if (iobj.getNumberID() == Number)
                 return iobj;
-            x++;
-        }
+
         return null;
     }
 
