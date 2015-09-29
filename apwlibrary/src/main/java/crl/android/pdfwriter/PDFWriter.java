@@ -128,4 +128,8 @@ public class PDFWriter {
         mPages.render();
         return mDocument.toPDFString();
     }
+
+    void setId(String id) {
+        mDocument.setId(id);
+    }
 }

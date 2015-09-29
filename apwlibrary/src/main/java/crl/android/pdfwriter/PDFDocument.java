@@ -21,6 +21,7 @@ public class PDFDocument extends Base {
         mBody.setObjectNumberStart(0);
         mCRT = new CrossReferenceTable();
         mTrailer = new Trailer();
+        setId(Indentifiers.generateId());
     }
 
     public IndirectObject newIndirectObject() {
@@ -50,6 +51,10 @@ public class PDFDocument extends Base {
         mBody.includeIndirectObject(iobj);
     }
 
+    void setId(String id) {
+        mTrailer.setId(id);
+    }
+
     @Override
     public String toPDFString() {
         StringBuilder sb = new StringBuilder();
@@ -65,7 +70,6 @@ public class PDFDocument extends Base {
         }
         mTrailer.setObjectsCount(mBody.getObjectsCount());
         mTrailer.setCrossReferenceTableByteOffset(sb.length());
-        mTrailer.setId(Indentifiers.generateId());
         return sb.toString() + mCRT.toPDFString() + mTrailer.toPDFString();
     }
 
