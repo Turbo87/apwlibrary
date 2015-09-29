@@ -92,9 +92,9 @@ public class PDFDocument extends Base {
         mTrailer.setObjectsCount(mBody.getObjectsCount());
         mTrailer.setCrossReferenceTableByteOffset(offset + sb.length());
 
-        String s = sb.toString() + mCRT.toPDFString();
-        stream.write(s.getBytes(StandardCharsets.US_ASCII));
+        stream.write(sb.toString().getBytes(StandardCharsets.US_ASCII));
 
+        mCRT.writeTo(stream);
         mTrailer.writeTo(stream);
     }
 
