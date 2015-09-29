@@ -9,20 +9,14 @@ package crl.android.pdfwriter;
 
 public class EnclosedContent extends Base {
 
-    private String mBegin;
-    private String mEnd;
+    private final String mBegin;
+    private final String mEnd;
     protected StringBuilder mContent;
 
-    public EnclosedContent() {
+    public EnclosedContent(String begin, String end) {
+        mBegin = begin;
+        mEnd = end;
         clear();
-    }
-
-    public void setBeginKeyword(String Value) {
-        mBegin = Value;
-    }
-
-    public void setEndKeyword(String Value) {
-        mEnd = Value;
     }
 
     public boolean hasContent() {

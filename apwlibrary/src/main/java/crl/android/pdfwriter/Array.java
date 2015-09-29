@@ -10,9 +10,7 @@ package crl.android.pdfwriter;
 public class Array extends EnclosedContent {
 
     public Array() {
-        super();
-        setBeginKeyword("[ ");
-        setEndKeyword("]");
+        super("[ ", "]");
     }
 
     public void addItem(String s) {

@@ -10,9 +10,7 @@ package crl.android.pdfwriter;
 public class Stream extends EnclosedContent {
 
     public Stream() {
-        super();
-        setBeginKeyword("stream\n");
-        setEndKeyword("endstream\n");
+        super("stream\n", "endstream\n");
     }
 
 }

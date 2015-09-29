@@ -10,9 +10,7 @@ package crl.android.pdfwriter;
 public class Dictionary extends EnclosedContent {
 
     public Dictionary() {
-        super();
-        setBeginKeyword("<<\n");
-        setEndKeyword(">>\n");
+        super("<<\n", ">>\n");
     }
 
 }
