@@ -24,15 +24,16 @@ import static org.junit.Assert.assertNotNull;
 @TargetApi(Build.VERSION_CODES.KITKAT)
 public class PDFWriterTest {
 
-    private AssetManager assetManager;
     private PDFWriter pdfWriter;
+    private byte[] expected;
 
     @Before
     public void initTargetContext() throws IOException {
         Context context = InstrumentationRegistry.getTargetContext();
         assertNotNull(context);
 
-        assetManager = context.getAssets();
+        AssetManager assetManager = context.getAssets();
+        expected = IOUtils.toByteArray(assetManager.open("output.pdf"));
 
         pdfWriter = new PDFWriter(PaperSize.FOLIO_WIDTH, PaperSize.FOLIO_HEIGHT);
         pdfWriter.setId("1234567890");
@@ -80,6 +81,6 @@ public class PDFWriterTest {
     @Test
     public void testAsString() throws Exception {
         byte[] bytes = pdfWriter.asString().getBytes(StandardCharsets.US_ASCII);
-        assertArrayEquals(IOUtils.toByteArray(assetManager.open("output.pdf")), bytes);
+        assertArrayEquals(expected, bytes);
     }
 }
