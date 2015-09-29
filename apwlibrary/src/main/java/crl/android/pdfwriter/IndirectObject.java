@@ -137,8 +137,6 @@ public class IndirectObject extends Base {
         stream.write(' ');
         offset++;
 
-        String s = mContent.toPDFString();
-        stream.write(s.getBytes(StandardCharsets.US_ASCII));
-        return offset + s.length();
+        return offset + mContent.writeTo(stream);
     }
 }
