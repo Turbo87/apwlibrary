@@ -14,6 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import static org.junit.Assert.assertArrayEquals;
@@ -85,5 +86,12 @@ public class PDFWriterTest {
     public void testAsString() throws Exception {
         byte[] bytes = pdfWriter.asString().getBytes(StandardCharsets.US_ASCII);
         assertArrayEquals(expected, bytes);
+    }
+
+    @Test
+    public void testWriteTo() throws Exception {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        pdfWriter.writeTo(stream);
+        assertArrayEquals(expected, stream.toByteArray());
     }
 }
