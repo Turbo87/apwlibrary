@@ -89,10 +89,10 @@ public class PDFDocument extends Base {
                 mCRT.addObjectXRefInfo(iobj.getByteOffset(), iobj.getGeneration(), iobj.getInUse());
             }
         }
+        mCRT.writeTo(stream);
+
         mTrailer.setObjectsCount(mBody.getObjectsCount());
         mTrailer.setCrossReferenceTableByteOffset(offset);
-
-        mCRT.writeTo(stream);
         mTrailer.writeTo(stream);
     }
 
