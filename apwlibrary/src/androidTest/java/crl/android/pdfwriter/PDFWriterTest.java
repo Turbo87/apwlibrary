@@ -28,7 +28,7 @@ public class PDFWriterTest {
     private PDFWriter pdfWriter;
 
     @Before
-    public void initTargetContext() {
+    public void initTargetContext() throws IOException {
         Context context = InstrumentationRegistry.getTargetContext();
         assertNotNull(context);
 
@@ -37,22 +37,18 @@ public class PDFWriterTest {
         pdfWriter = new PDFWriter(PaperSize.FOLIO_WIDTH, PaperSize.FOLIO_HEIGHT);
         pdfWriter.setId("1234567890");
 
-        try {
-            Bitmap xoiPNG = BitmapFactory.decodeStream(assetManager.open("CRL-borders.png"));
-            Bitmap xoiJPG = BitmapFactory.decodeStream(assetManager.open("CRL-star.jpg"));
-            Bitmap xoiBMP1 = BitmapFactory.decodeStream(assetManager.open("CRL-1bit.bmp"));
-            Bitmap xoiBMP8 = BitmapFactory.decodeStream(assetManager.open("CRL-8bits.bmp"));
-            Bitmap xoiBMP24 = BitmapFactory.decodeStream(assetManager.open("CRL-24bits.bmp"));
-            pdfWriter.addImage(400, 600, xoiPNG, Transformation.DEGREES_315_ROTATION);
-            pdfWriter.addImage(300, 500, xoiJPG);
-            pdfWriter.addImage(200, 400, 135, 75, xoiBMP24);
-            pdfWriter.addImage(150, 300, 130, 70, xoiBMP8);
-            pdfWriter.addImageKeepRatio(100, 200, 50, 25, xoiBMP8);
-            pdfWriter.addImageKeepRatio(50, 100, 30, 25, xoiBMP1, Transformation.DEGREES_270_ROTATION);
-            pdfWriter.addImageKeepRatio(25, 50, 30, 25, xoiBMP1);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Bitmap xoiPNG = BitmapFactory.decodeStream(assetManager.open("CRL-borders.png"));
+        Bitmap xoiJPG = BitmapFactory.decodeStream(assetManager.open("CRL-star.jpg"));
+        Bitmap xoiBMP1 = BitmapFactory.decodeStream(assetManager.open("CRL-1bit.bmp"));
+        Bitmap xoiBMP8 = BitmapFactory.decodeStream(assetManager.open("CRL-8bits.bmp"));
+        Bitmap xoiBMP24 = BitmapFactory.decodeStream(assetManager.open("CRL-24bits.bmp"));
+        pdfWriter.addImage(400, 600, xoiPNG, Transformation.DEGREES_315_ROTATION);
+        pdfWriter.addImage(300, 500, xoiJPG);
+        pdfWriter.addImage(200, 400, 135, 75, xoiBMP24);
+        pdfWriter.addImage(150, 300, 130, 70, xoiBMP8);
+        pdfWriter.addImageKeepRatio(100, 200, 50, 25, xoiBMP8);
+        pdfWriter.addImageKeepRatio(50, 100, 30, 25, xoiBMP1, Transformation.DEGREES_270_ROTATION);
+        pdfWriter.addImageKeepRatio(25, 50, 30, 25, xoiBMP1);
 
         pdfWriter.setFont(StandardFonts.SUBTYPE, StandardFonts.TIMES_ROMAN);
         pdfWriter.addRawContent("1 0 0 rg\n");
