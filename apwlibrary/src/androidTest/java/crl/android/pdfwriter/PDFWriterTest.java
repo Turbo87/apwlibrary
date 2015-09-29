@@ -34,6 +34,9 @@ public class PDFWriterTest {
         AssetManager assetManager = context.getAssets();
         expected = IOUtils.toByteArray(assetManager.open("output.pdf"));
 
+        // reset image counter to make sure the files are identical
+        XObjectImage.mImageCount = 0;
+
         pdfWriter = new PDFWriter(PaperSize.FOLIO_WIDTH, PaperSize.FOLIO_HEIGHT);
         pdfWriter.setId("1234567890");
 

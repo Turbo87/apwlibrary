@@ -27,7 +27,7 @@ public class XObjectImage {
     public static int COMPRESSION_LEVEL = Deflater.NO_COMPRESSION;
     public static String ENCODING = "ISO-8859-1";
 
-    private static int mImageCount = 0;
+    static int mImageCount = 0;
 
     private PDFDocument mDocument;
     private IndirectObject mIndirectObject;
