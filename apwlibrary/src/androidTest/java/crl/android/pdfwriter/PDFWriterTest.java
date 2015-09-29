@@ -26,13 +26,14 @@ public class PDFWriterTest {
     private PDFWriter pdfWriter;
     private byte[] expected;
 
+    @SuppressWarnings("deprecation")
     @Before
     public void initTargetContext() throws IOException {
         Context context = InstrumentationRegistry.getTargetContext();
         assertNotNull(context);
 
         AssetManager assetManager = context.getAssets();
-        expected = IOUtils.toByteArray(assetManager.open("output.pdf"));
+        expected = IOUtils.toByteArray(assetManager.open("output-22-" + Build.CPU_ABI + ".pdf"));
 
         // reset image counter to make sure the files are identical
         XObjectImage.mImageCount = 0;
