@@ -70,10 +70,9 @@ public class Body extends List {
     }
 
     private String render() {
-        int x = 0;
         int offset = mByteOffsetStart;
-        while (x < mObjectsList.size()) {
-            IndirectObject iobj = getObjectByNumberID(++x);
+        for (int x = 1; x <= mObjectsList.size(); x++) {
+            IndirectObject iobj = getObjectByNumberID(x);
             String s = "";
             if (iobj != null)
                 s = iobj.toPDFString() + "\n";
