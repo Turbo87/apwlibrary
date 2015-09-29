@@ -7,6 +7,9 @@
 
 package crl.android.pdfwriter;
 
+import java.io.IOException;
+import java.io.OutputStream;
+
 public class Header extends Base {
 
     private String mVersion;
@@ -39,4 +42,9 @@ public class Header extends Base {
         setVersion(1, 4);
     }
 
+	public int writeTo(OutputStream stream) throws IOException {
+		byte[] bytes = mRenderedHeader.getBytes(StandardCharsets.US_ASCII);
+		stream.write(bytes);
+		return bytes.length;
+	}
 }

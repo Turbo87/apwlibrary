@@ -7,6 +7,9 @@
 
 package crl.android.pdfwriter;
 
+import java.io.IOException;
+import java.io.OutputStream;
+
 public class IndirectObject extends Base {
 
     private EnclosedContent mContent;
@@ -121,4 +124,19 @@ public class IndirectObject extends Base {
         return render();
     }
 
+    public int writeTo(OutputStream stream) throws IOException {
+        // j-a-s-d: this can be performed in inherited classes DictionaryObject and StreamObject
+        if (mDictionaryContent.hasContent()) {
+            mContent.setContent(mDictionaryContent.toPDFString());
+            if (mStreamContent.hasContent())
+                mContent.addContent(mStreamContent.toPDFString());
+        }
+
+        int offset = mID.writeTo(stream);
+
+        stream.write(' ');
+        offset++;
+
+        return offset + mContent.writeTo(stream);
+    }
 }

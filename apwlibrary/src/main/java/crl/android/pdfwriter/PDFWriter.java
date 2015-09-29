@@ -9,6 +9,9 @@ package crl.android.pdfwriter;
 
 import android.graphics.Bitmap;
 
+import java.io.IOException;
+import java.io.OutputStream;
+
 public class PDFWriter {
 
     private PDFDocument mDocument;
@@ -131,5 +134,10 @@ public class PDFWriter {
 
     void setId(String id) {
         mDocument.setId(id);
+    }
+
+    public void writeTo(OutputStream stream) throws IOException {
+        mPages.render();
+        mDocument.writeTo(stream);
     }
 }

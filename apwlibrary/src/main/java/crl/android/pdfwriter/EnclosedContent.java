@@ -7,6 +7,9 @@
 
 package crl.android.pdfwriter;
 
+import java.io.IOException;
+import java.io.OutputStream;
+
 public class EnclosedContent extends Base {
 
     private final String mBegin;
@@ -54,4 +57,9 @@ public class EnclosedContent extends Base {
         return mBegin + mContent.toString() + mEnd;
     }
 
+    public int writeTo(OutputStream stream) throws IOException {
+        byte[] bytes = toPDFString().getBytes(StandardCharsets.US_ASCII);
+        stream.write(bytes);
+        return bytes.length;
+    }
 }

@@ -7,6 +7,9 @@
 
 package crl.android.pdfwriter;
 
+import java.io.IOException;
+import java.io.OutputStream;
+
 public class Trailer extends Base {
 
     private int mXRefByteOffset;
@@ -63,5 +66,11 @@ public class Trailer extends Base {
     public void clear() {
         mXRefByteOffset = 0;
         mTrailerDictionary = new Dictionary();
+    }
+
+    public int writeTo(OutputStream stream) throws IOException {
+        byte[] bytes = render().getBytes(StandardCharsets.US_ASCII);
+        stream.write(bytes);
+        return bytes.length;
     }
 }
