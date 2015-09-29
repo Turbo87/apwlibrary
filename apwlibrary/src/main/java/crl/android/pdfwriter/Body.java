@@ -91,9 +91,16 @@ public class Body extends List {
     }
 
     public int writeTo(OutputStream stream) throws IOException {
-        byte[] bytes = render().getBytes(StandardCharsets.US_ASCII);
-        stream.write(bytes);
-        return bytes.length;
+        int offset = mByteOffsetStart;
+        for (int x = 1; x <= mObjectsList.size(); x++) {
+            IndirectObject iobj = getObjectByNumberID(x);
+            if (iobj != null) {
+                iobj.setByteOffset(offset);
+                offset += iobj.writeTo(stream) + 1;
+                stream.write('\n');
+            }
+        }
+        return offset - mByteOffsetStart;
     }
 
     @Override

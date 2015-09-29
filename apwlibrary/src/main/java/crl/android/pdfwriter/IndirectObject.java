@@ -7,6 +7,9 @@
 
 package crl.android.pdfwriter;
 
+import java.io.IOException;
+import java.io.OutputStream;
+
 public class IndirectObject extends Base {
 
     private EnclosedContent mContent;
@@ -121,4 +124,9 @@ public class IndirectObject extends Base {
         return render();
     }
 
+    public int writeTo(OutputStream stream) throws IOException {
+        byte[] bytes = render().getBytes(StandardCharsets.US_ASCII);
+        stream.write(bytes);
+        return bytes.length;
+    }
 }
