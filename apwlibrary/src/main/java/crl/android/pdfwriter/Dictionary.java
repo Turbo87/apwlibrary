@@ -11,8 +11,8 @@ public class Dictionary extends EnclosedContent {
 
     public Dictionary() {
         super();
-        setBeginKeyword("<<", false, true);
-        setEndKeyword(">>", false, true);
+        setBeginKeyword("<<\n");
+        setEndKeyword(">>\n");
     }
 
 }

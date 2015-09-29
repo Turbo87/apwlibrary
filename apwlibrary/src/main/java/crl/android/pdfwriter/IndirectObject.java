@@ -112,8 +112,8 @@ public class IndirectObject extends Base {
         mByteOffset = 0;
         mInUse = false;
         mContent = new EnclosedContent();
-        mContent.setBeginKeyword("obj", false, true);
-        mContent.setEndKeyword("endobj", false, true);
+        mContent.setBeginKeyword("obj\n");
+        mContent.setEndKeyword("endobj\n");
         mDictionaryContent = new Dictionary();
         mStreamContent = new Stream();
     }

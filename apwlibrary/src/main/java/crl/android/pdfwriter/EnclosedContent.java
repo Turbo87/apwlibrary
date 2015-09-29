@@ -17,22 +17,12 @@ public class EnclosedContent extends Base {
         clear();
     }
 
-    public void setBeginKeyword(String Value, boolean NewLineBefore, boolean NewLineAfter) {
-        if (NewLineBefore)
-            mBegin = "\n" + Value;
-        else
-            mBegin = Value;
-        if (NewLineAfter)
-            mBegin += "\n";
+    public void setBeginKeyword(String Value) {
+        mBegin = Value;
     }
 
-    public void setEndKeyword(String Value, boolean NewLineBefore, boolean NewLineAfter) {
-        if (NewLineBefore)
-            mEnd = "\n" + Value;
-        else
-            mEnd = Value;
-        if (NewLineAfter)
-            mEnd += "\n";
+    public void setEndKeyword(String Value) {
+        mEnd = Value;
     }
 
     public boolean hasContent() {
