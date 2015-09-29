@@ -19,10 +19,8 @@ public abstract class List extends Base {
 
     protected String renderList() {
         StringBuilder sb = new StringBuilder();
-        int x = 0;
-        while (x < mList.size()) {
-            sb.append(mList.get(x).toString());
-            x++;
+        for (String s : mList) {
+            sb.append(s);
         }
         return sb.toString();
     }
