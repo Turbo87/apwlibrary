@@ -125,8 +125,20 @@ public class IndirectObject extends Base {
     }
 
     public int writeTo(OutputStream stream) throws IOException {
-        byte[] bytes = render().getBytes(StandardCharsets.US_ASCII);
-        stream.write(bytes);
-        return bytes.length;
+        // j-a-s-d: this can be performed in inherited classes DictionaryObject and StreamObject
+        if (mDictionaryContent.hasContent()) {
+            mContent.setContent(mDictionaryContent.toPDFString());
+            if (mStreamContent.hasContent())
+                mContent.addContent(mStreamContent.toPDFString());
+        }
+
+        int offset = mID.writeTo(stream);
+
+        stream.write(' ');
+        offset++;
+
+        String s = mContent.toPDFString();
+        stream.write(s.getBytes(StandardCharsets.US_ASCII));
+        return offset + s.length();
     }
 }
